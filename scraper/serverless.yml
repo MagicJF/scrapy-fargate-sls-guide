@@ -55,11 +55,21 @@ functions:
     handler: launcher.scrape
   fargateScrape:
     handler: launch_fargate.launch_fargate
+    events:
+      - schedule:
+          rate: cron(0/1 * * * ? *)
+          enabled: true
+          description:
+            Header spider every Minute
+            # The input is key-value pairs accessed in the root of the event parameter of every handler function, i.e. event.get("spider_name")
+          input:
+            spider_name: header_spider
+            # ...
+    # We include files by whitelisting to reduce the deployment time.
+    # Just remember to add any files you create!
   pollSpidersScrape:
     handler: handler.run_crawlers
 
-# We include files by whitelisting to reduce the deployment time.
-# Just remember to add any files you create!
 package:
   include:
     - handler.py
