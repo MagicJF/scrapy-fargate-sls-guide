@@ -51,4 +51,7 @@ def crawl(settings={}, spider_name="header_spider", spider_kwargs={}):
     process = CrawlerProcess({**project_settings, **settings})
 
     process.crawl(spider_cls, **spider_kwargs)
+    if "twisted.internet.reactor" in sys.modules:
+        del sys.modules["twisted.internet.reactor"]
+        
     process.start()

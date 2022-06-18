@@ -2,37 +2,36 @@ service: my-sls-scraper
 
 provider:
   name: aws
-  runtime: python3.7
+  runtime: python3.8
   logRetentionInDays: 1
-  profile: my-sls-admin
 
   environment:
     FEED_BUCKET_NAME: !Ref ScraperFeedBucket
     HTTP_CACHE_BUCKET_NAME: !Ref HttpCacheBucket
-    CONTAINER_NAME: "scraper_container"
+    CONTAINER_NAME: 'scraper_container'
     ECS_CLUSTER: !GetAtt FargateECSCluster.Arn
     ECS_TASK_ARN: !Ref FargateECSTaskDefinition
     ECS_SUBNET: !Ref FargateSubnet
     ECS_SEC_GROUP: !Ref FargateSG
 
   iamRoleStatements:
-    - Effect: "Allow"
+    - Effect: 'Allow'
       Action:
-        - "s3:PutObject"
+        - 's3:PutObject'
       Resource: !Sub
-        - "arn:aws:s3:::#{BucketName}/*"
+        - 'arn:aws:s3:::#{BucketName}/*'
         - BucketName: !Ref ScraperFeedBucket
-    - Effect: "Allow"
+    - Effect: 'Allow'
       Action:
-        - "s3:GetObject"
-        - "s3:PutObject"
-        - "s3:ListBucket"
+        - 's3:GetObject'
+        - 's3:PutObject'
+        - 's3:ListBucket'
       Resource:
         - !Sub
-          - "arn:aws:s3:::#{BucketName}/*"
+          - 'arn:aws:s3:::#{BucketName}/*'
           - BucketName: !Ref HttpCacheBucket
         - !Sub
-          - "arn:aws:s3:::#{BucketName}"
+          - 'arn:aws:s3:::#{BucketName}'
           - BucketName: !Ref HttpCacheBucket
 
     - Effect: Allow
@@ -69,11 +68,11 @@ package:
     - my_sls_scraper/**
     - scrapy.cfg
   exclude:
-    - "./**"
+    - './**'
 
 resources:
-  - AWSTemplateFormatVersion: "2010-09-09"
-    Transform: "AWS::Serverless-2016-10-31"
+  - AWSTemplateFormatVersion: '2010-09-09'
+    Transform: 'AWS::Serverless-2016-10-31'
   - ${file(./s3-template.yml)}
   - ${file(./fargate-template.yml)}
 
