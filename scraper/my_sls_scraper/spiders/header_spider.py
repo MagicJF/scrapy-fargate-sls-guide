@@ -16,7 +16,7 @@ class HeaderSpider(CrawlSpider):
         print("")
         print("C",self.start_urls)
         if kwargs.get("start_urls"):
-            self.start_urls = [kwargs.get("start_urls")]
+            self.start_urls = kwargs.get("start_urls")
             self.allowed_domains = list(
                 urlparse(x).hostname for x in self.start_urls
             )

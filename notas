@@ -1,2 +1,3 @@
 executar aquest comand a la carpeta scraper
-python launcher.py '{"spider_name": "header_spider"}'      
+
+python launcher.py '{ "spider_name": "header_spider", "spider_kwargs": { "start_urls": ["https://scrapy.org"] }}'
