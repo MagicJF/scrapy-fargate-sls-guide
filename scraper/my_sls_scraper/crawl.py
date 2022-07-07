@@ -24,7 +24,7 @@ def crawl(settings={}, spider_name="header_spider", spider_kwargs={}):
     spider_cls = spider_loader.load(spider_name)
 
     feed_uri = ""
-    feed_format = "json"
+    feed_format = "csv"
 
     try:
         spider_key = urlparse(spider_kwargs.get("start_urls")[0]).hostname if spider_kwargs.get(
@@ -35,15 +35,15 @@ def crawl(settings={}, spider_name="header_spider", spider_kwargs={}):
     if is_in_aws():
         # Lambda can only write to the /tmp folder.
         settings['HTTPCACHE_DIR'] = "/tmp"
-        feed_uri = f"s3://{os.getenv('FEED_BUCKET_NAME')}/%(name)s-{spider_key}.json"
+        feed_uri = f"s3://{os.getenv('FEED_BUCKET_NAME')}/%(name)s-{spider_key}.csv"
     else:
-        feed_uri = "file://{}/%(name)s-{}-%(time)s.json".format(
+        feed_uri = "file://{}/%(name)s-{}-%(time)s.csv".format(
             os.path.join(os.getcwd(), "feed"),
             spider_key,
         )
 
 #canvi en la ubicacio de les feeds.
-        feed_uri= "file:///home/joan/Documents/Github/Docker/FEED_scrapy-fargate-sls-guide/%(name)s-"+spider_key+"-%(time)s.json"
+        feed_uri= "file:///home/joan/Documents/Github/Docker/FEED_scrapy-fargate-sls-guide/%(name)s-"+spider_key+"-%(time)s.csv"
         print("Feeds in location >>  ", feed_uri)
         print("")
 
