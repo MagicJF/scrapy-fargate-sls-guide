@@ -5,3 +5,5 @@
 # o, executar aquest comand per fer docker i run:
 
 # docker run --rm --name scrapyfargate magicjf/scrapyfargate python launcher.py '{ "spider_name": "header_spider", "spider_kwargs": { "start_urls": ["https://lavanguardia.com"] }}'
+
+pruebas fusion
