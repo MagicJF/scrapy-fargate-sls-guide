@@ -1,0 +1,2 @@
+executar aquest comand a la carpeta scraper
+python launcher.py '{"spider_name": "header_spider"}'      
