@@ -44,7 +44,6 @@ def crawl(settings={}, spider_name="header_spider", spider_kwargs={}):
 
 #canvi en la ubicacio de les feeds.
         feed_uri= "file:///home/joan/Documents/Github/Docker/FEED_scrapy-fargate-sls-guide/%(name)s-"+spider_key+"-%(time)s.json"
-        print("")
         print("Feeds in location >>  ", feed_uri)
         print("")
 

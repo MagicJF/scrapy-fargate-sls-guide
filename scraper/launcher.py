@@ -5,6 +5,7 @@ from my_sls_scraper.crawl import crawl
 
 
 def scrape(event={}, context={}):
+    print("event== ",event)
     crawl(**event)
 
 if __name__ == "__main__":
@@ -16,3 +17,4 @@ if __name__ == "__main__":
     except IndexError:
         event = {}
     scrape(event)
+    print("event== ",event)

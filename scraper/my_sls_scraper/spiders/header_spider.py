@@ -13,11 +13,15 @@ class HeaderSpider(CrawlSpider):
 
     def __init__(self, **kwargs):
         # Enables overriding attributes for a flexible spider
+        print("")
+        print("C",self.start_urls)
         if kwargs.get("start_urls"):
-            self.start_urls = kwargs.get("start_urls")
+            self.start_urls = [kwargs.get("start_urls")]
             self.allowed_domains = list(
                 urlparse(x).hostname for x in self.start_urls
             )
+        print("D",self.start_urls)
+        print("")
 
         super().__init__(
             **{k: v for k, v in kwargs.items() if not hasattr(self, k)}
