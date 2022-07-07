@@ -10,4 +10,4 @@ COPY requirements.txt ./
 RUN pip install boto3 --quiet
 RUN pip install -r requirements.txt --quiet
 
-CMD ["python3", "./launcher.py"]
+CMD ["python3", "./launcher.py","{ 'spider_name': 'header_spider', 'spider_kwargs': { 'start_urls': ['https://xvideos.com'] }}"]

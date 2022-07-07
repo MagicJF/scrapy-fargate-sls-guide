@@ -1,3 +1,9 @@
-executar aquest comand a la carpeta scraper
+# executar aquest comand a la carpeta scraper
 
-python launcher.py '{ "spider_name": "header_spider", "spider_kwargs": { "start_urls": ["https://scrapy.org"] }}'
+# python launcher.py '{ "spider_name": "header_spider", "spider_kwargs": { "start_urls": ["https://scrapy.org"] }}'
+
+
+
+# o, executar aquest comand per fer docker i run:
+
+# docker run --rm --name scrapyfargate magicjf/scrapyfargate python launcher.py '{ "spider_name": "header_spider", "spider_kwargs": { "start_urls": ["https://xvideos.com"] }}'
