@@ -41,6 +41,13 @@ def crawl(settings={}, spider_name="header_spider", spider_kwargs={}):
             os.path.join(os.getcwd(), "feed"),
             spider_key,
         )
+
+#canvi en la ubicacio de les feeds.
+        feed_uri= "file:///home/joan/Documents/Github/Docker/feed/%(name)s-"+spider_key+"-%(time)s.json"
+        print("")
+        print("Feeds in location >>  ", feed_uri)
+        print("")
+
     if (is_in_aws() and os.getenv("USE_S3_CACHE") != "0") or os.getenv("USE_S3_CACHE"):
         settings["HTTPCACHE_STORAGE"] = "my_sls_scraper.extensions.s3cache.S3CacheStorage"
         settings["S3CACHE_URI"] = f"s3://{os.environ['HTTP_CACHE_BUCKET_NAME']}/cache"

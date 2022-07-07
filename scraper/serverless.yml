@@ -65,6 +65,11 @@ functions:
     handler: launch_fargate.launch_fargate
   pollSpidersScrape:
     handler: handler.run_crawlers
+    events:
+      - schedule:
+          rate: rate(2 hours)
+          enabled: true
+          description: Poll spiders every 2 hours
 
 package:
   include:

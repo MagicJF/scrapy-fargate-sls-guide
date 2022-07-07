@@ -5,6 +5,13 @@ import boto3
 
 
 def launch_fargate(event, context):
+    print("eventtttttttttttttttttttt")
+    print(event)
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
     client = boto3.client("ecs")
 
     ECSCluster = os.environ["ECS_CLUSTER"]
